@@ -1,0 +1,112 @@
+﻿@model CompanyManager.Models.Sale
+
+@{
+    ViewBag.Title = "Thêm";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>Thêm
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductID, "Vật tư", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ProductID", null , "Chọn sản phẩm", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BrandName, "Hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.BrandName, new SelectList(" "), "Chọn Hãng", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ModemID, "Mã hiệu", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ModemID", null, "Chọn modem", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ModemID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Note,  new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+        </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#ProductID').change(function () {
+            $.get("/Admin/Sales/GetBrand", { ProductID: $("#ProductID").val() }, function (data) {
+                $("#BrandName").empty();
+                $.each(data, function (index, row) {
+                    $("#BrandName").append("<option value='" + row.BrandName + "' >" + row.BrandName + "</option>")
+                });
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#ProductID').change(function () {
+            $.get("/Admin/Sales/GetModem", { ProductID: $("#ProductID").val() }, function (data) {
+                $("#ModemID").empty();
+                $.each(data, function (index, row) {
+                    $("#ModemID").append("<option value='" + row.ModemID + "' >" + row.ModemID + "</option>")
+                });
+            });
+        });
+    });
+</script>

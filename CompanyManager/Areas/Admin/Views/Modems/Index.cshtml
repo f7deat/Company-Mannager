@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CompanyManager.Models.Modem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>Danh sách Modem
+        </div>
+        <div class="actions">
+            <a href="/Admin/Modems/Create" class="btn btn-default btn-sm">
+                <i class="fa fa-plus"></i> Thêm
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <table class="table table-striped table-bordered table-hover" id="sample_3">
+            <thead>
+                <tr>
+
+                    <th class="table-checkbox">
+                        <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes" />
+                    </th>
+                    <th>Mã hiệu</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitPrice)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <input type="checkbox" class="checkboxes" value="1" />
+                    </td>
+                    <td>@item.ModemID</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ModemID }, new { @class = "btn btn-sm btn-info" })
+                        @*@Html.ActionLink("Chi tiết", "Details", new { id = item.ModemID }, new { @class = "btn btn-sm btn-primary" })*@
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.ModemID }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+</div>

@@ -1,0 +1,201 @@
+﻿@model CompanyManager.Models.Volume
+@{
+    ViewBag.Title = "Print";
+    Layout = null;
+    var ListChao = (List<CompanyManager.Models.Sale>)ViewBag.ListChao;
+}
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/in.css" rel="stylesheet" />
+<style>
+    body, table {
+        font-size: 12px
+    }
+</style>
+<div style="padding:10px 100px;margin-bottom: 10px;border-bottom: 1px solid #000">
+    <div style="font-weight:bold;font-size:15px">CÔNG TY TNHH TM&DV KỸ THUẬT ĐIỆN ANH MINH</div>
+    <div>Địa chỉ: Xóm Mạnh Bầu, Tân Dương, Thủy Nguyên, Hải Phòng</div>
+    <div>VPGD: Số 124 đường 5 mới, Hùng Vương, hồng Bàng, Hải Phòng</div>
+    <div>Mã ST: 0201650223</div>
+    <div>Tel: 0313.522.325</div>
+    <div>Email: info@anhminh.com</div>
+</div>
+<div style="text-align:center; font-weight:bold;font-size:22px">
+    <b>BẢNG CHÀO GIÁ</b>
+</div>
+<div style="text-align:center">
+    <b>Số: @Model.VolumeName</b>
+</div>
+<br />
+<div class="portlet box grey-cascade">
+
+    <div class="portlet-body" id="DivIdToPrint">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Customer.CompanyName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.ContactName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Customer.ContactName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Customer.Phone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Customer.Fax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Customer.Fax)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DateCreate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.DateCreate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Người gửi
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.User.FullName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Điện thoại
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.User.PhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.User.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.User.Email)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="padding: 0 10px">
+            Công ty TNHH TM & DV KT Điện Anh Minh chân thành cảm ơn Quý Công ty đã quan tâm đến sản phẩm của Công ty chúng tôi.
+        </div>
+        <div style="padding:10px">
+            Theo yêu cầu báo giá của Quý Công ty, chúng tôi xin gửi bảng chào giá tốt nhất của Công ty TNHH TM & DV KT Điện Anh Minh như sau
+        </div>
+        <table class="table table-striped table-bordered table-hover" id="sample_3">
+            <thead>
+                <tr>
+                    <th>
+                        Tên vật tư
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreate)
+                    </th>
+                    <th>Mã hiệu</th>
+                    <th>
+                        Hãng
+                    </th>
+                    <th>SL</th>
+                    <th>ĐVT</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th>Ghi chú</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ListChao)
+                {
+                <tr>
+                    <td>
+                        @item.Product.ProductName
+                    </td>
+                    <td>
+                        @item.Volume.DateCreate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>@item.ModemID</td>
+                    <td>
+                        @item.BrandName
+                    </td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Unit</td>
+                    <td>
+                        @item.Modem.UnitPrice
+                    </td>
+                    <td>@(item.Quantity * int.Parse(item.Modem.UnitPrice))</td>
+                    <td>@item.Note</td>
+                </tr>
+                }
+                
+            </tbody>
+        </table>
+        <table class="table table-bordered" style="margin-top:-20px">
+            <tbody>
+                <tr>
+                    <td><b><i>Tổng cộng tiền hàng</i></b></td>
+                    <td>@Model.Sales.Sum(x => x.Quantity * int.Parse(x.Modem.UnitPrice))đ</td>
+                </tr>
+                <tr>
+                    <td><b><i>Thuế GTGT 10%</i></b></td>
+                    <td>@(Model.Sales.Sum(x => x.Quantity * int.Parse(x.Modem.UnitPrice)) * 0.1)đ</td>
+                </tr>
+                <tr>
+                    <td><b><i>Tổng tiền đã bao gồm thuế GTGT</i></b></td>
+                    <td>@(Model.Sales.Sum(x => x.Quantity * int.Parse(x.Modem.UnitPrice)) + Model.Sales.Sum(x => x.Quantity * int.Parse(x.Modem.UnitPrice)) * 0.1)đ</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="font-weight:bold"><u>Ghi chú:</u></div>
+<div>* Tiêu chuẩn hàng: Hàng mới 100%, bảo hành 12 tháng theo tiêu chuẩn nhà sản xuất</div>
+<div>* Giao hàng tại: @Model.ShipAddress</div>
+<div>* Thời gian giao hàng: Xem phần ghi chú</div>
+<div>* Hiệu lực báo giá: Báo giá có giá trị trong vòng 7 ngày</div>
+<div>* Thanh toán: Trước khi giao hàng</div>
+<div>Tên tài khoản: <b>Công ty TNHH TM & DV KT Anh Minh</b></div>
+<div><b>Số TK: 206009379 tại NH ACB Chi nhánh Quán Toan Hồng Bàng - Hải Phòng</b></div>
+<div>Chúng tôi xin chân thành cảm ơn sự quan tâm của quý công ty và mong nhận được phúc đáp sớm của quý công ty.</div>
+<div class="row" style="text-align:center;margin-top:20px">
+    <div class="col-xs-6">
+        <b style="text-transform: uppercase">Xác nhận của khách hàng</b>
+    </div>
+    <div class="col-xs-6">
+        <b style="text-transform: uppercase">công ty tnhh tm & dv kt điện anh minh</b>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () { window.print(); }
+</script>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CompanyManager.Models.Brand>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>Hãng sản xuất
+        </div>
+        <div class="actions">
+            <a href="/Admin/Brands/Create" class="btn btn-default btn-sm">
+                <i class="fa fa-plus"></i> Thêm
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <table class="table table-striped table-bordered table-hover" id="sample_3">
+            <thead>
+                <tr>
+                    <th class="table-checkbox">
+                        <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes" />
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BrandName)
+                    </th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="checkboxes" value="1" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrandName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.BrandID }, new { @class = "btn btn-sm btn-info" })
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.BrandID }, new { @class = "btn btn-sm btn-primary" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.BrandID }, new { @class = "btn btn-sm btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

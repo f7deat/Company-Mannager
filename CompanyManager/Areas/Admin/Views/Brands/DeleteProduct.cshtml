@@ -1,0 +1,33 @@
+﻿@model CompanyManager.Models.BrandProduct
+@{
+    ViewBag.Title = "DeleteProduct";
+    Layout = null;
+}
+
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Xóa</h4>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+                    <div class="modal-footer">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Xóa" class="btn btn-danger" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div><!-- /.modal-dialog -->

@@ -1,0 +1,29 @@
+﻿@model CompanyManager.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>Khách hàng
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="alert alert-danger">Xác nhận xóa?</div>
+        <div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+            </div>
+            }
+        </div>
+    </div>
+</div>

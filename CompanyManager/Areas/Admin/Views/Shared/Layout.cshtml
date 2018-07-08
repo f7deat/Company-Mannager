@@ -1,0 +1,431 @@
+﻿
+@{
+    Layout = null;
+    var session = (CompanyManager.Common.UserInfo)Session[CompanyManager.Common.Constants.USER_SESSION];
+}
+
+<!DOCTYPE html>
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>Công ty TNHH Anh Minh</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/Content/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/uniform/css/uniform.default.min.css" rel="stylesheet" />
+    <link href="~/Content/select2/select2.css" rel="stylesheet" />
+    <link href="~/Content/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="~/Content/components-md.css" rel="stylesheet" />
+    <link href="~/Content/plugins-md.css" rel="stylesheet" />
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/darkblue.css" rel="stylesheet" />
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Content/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Content/select2/select2.js"></script>
+</head>
+<!-- END HEAD -->
+<body class="page-md page-header-fixed page-quick-sidebar-over-content">
+    <!-- BEGIN HEADER -->
+    <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html">
+                    <img src="~/img/portlet-reload-icon.png" alt="logo" class="logo-default" />
+                </a>
+                <div class="menu-toggler sidebar-toggler hide">
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <!-- BEGIN TODO DROPDOWN -->
+                    <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <i class="icon-calendar"></i>
+                            <span class="badge badge-default">
+                                3
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks">
+                            <li class="external">
+                                <h3>You have <span class="bold">12 pending</span> tasks</h3>
+                                <a href="page_todo.html">view all</a>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">New release v1.2 </span>
+                                                <span class="percent">30%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">40% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">Application deployment</span>
+                                                <span class="percent">65%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">65% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">Mobile app release</span>
+                                                <span class="percent">98%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">98% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">Database migration</span>
+                                                <span class="percent">10%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">10% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">Web server upgrade</span>
+                                                <span class="percent">58%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">58% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">Mobile development</span>
+                                                <span class="percent">85%</span>
+                                            </span>
+                                            <span class="progress">
+                                                <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">85% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="task">
+                                                <span class="desc">New UI release</span>
+                                                <span class="percent">38%</span>
+                                            </span>
+                                            <span class="progress progress-striped">
+                                                <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"><span class="sr-only">38% Complete</span></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END TODO DROPDOWN -->
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown dropdown-user">
+                        @if (session != null)
+                        {
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle" src="~/img/avatar3_small.jpg" />
+                                <span class="username username-hide-on-mobile">
+                                    @session.Username
+                                </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="extra_profile.html">
+                                        <i class="icon-user"></i> Hồ sơ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="inbox.html">
+                                        <i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
+                                            3
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page_todo.html">
+                                        <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
+                                            7
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="extra_lock.html">
+                                        <i class="icon-lock"></i> Lock Screen
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/Logout">
+                                        <i class="icon-key"></i> Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle" src="~/img/avatar3_small.jpg" />
+                                <span class="username username-hide-on-mobile">
+                                    F7deat
+                                </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        }
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                    <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown dropdown-quick-sidebar-toggler">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="icon-logout"></i>
+                        </a>
+                    </li>
+                    <!-- END QUICK SIDEBAR TOGGLER -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+            <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                    <li class="sidebar-toggler-wrapper">
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <div class="sidebar-toggler">
+                        </div>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                    </li>
+                    <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                    <li class="sidebar-search-wrapper">
+                        <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                        <form class="sidebar-search " action="extra_search.html" method="POST">
+                            <a href="javascript:;" class="remove">
+                                <i class="icon-close"></i>
+                            </a>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                    </li>
+                    <li>
+                        <a href="/Admin/Dashboard">
+                            <i class="icon-home"></i>
+                            <span class="title">Trang chủ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Volumes">
+                            <i class="icon-briefcase"></i>
+                            <span class="title">
+                                Chào giá
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Products">
+                            <i class="icon-basket"></i>
+                            <span class="title">Sản phẩm</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Admin/Brands">
+                            <i class="icon-wallet"></i>
+                            <span class="title">
+                                Hãng sản xuất
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Admin/Modems">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">
+                                Mã hiệu
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Customers">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Users">
+                            <i class="icon-user"></i>
+                            <span class="title">Nhân viên</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Admin/Suppliers">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Nhà cung cấp</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                @RenderBody()
+            </div>
+        </div>
+        <!-- END CONTENT -->
+        <!-- BEGIN QUICK SIDEBAR -->
+        <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
+        <div class="page-quick-sidebar-wrapper">
+            <div class="page-quick-sidebar">
+                <div class="nav-justified">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active">
+                            <a href="#quick_sidebar_tab_1" data-toggle="tab">
+                                Users <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#quick_sidebar_tab_2" data-toggle="tab">
+                                Alerts <span class="badge badge-success">7</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                More<i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-bell"></i> Alerts
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-info"></i> Notifications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-speech"></i> Activities
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-settings"></i> Settings
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END QUICK SIDEBAR -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            @DateTime.Now.Year &copy; F7DEAT.
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/global/plugins/respond.min.js"></script>
+    <script src="../../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/jquery-migrate.min.js"></script>
+    <script src="~/Content/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/uniform/jquery.uniform.min.js"></script>
+    <script src="~/Scripts/quick-sidebar.js"></script>
+    <!-- END CORE PLUGINS -->
+    <script src="~/Scripts/metronic.js"></script>
+    <script src="~/Scripts/layout.js"></script>
+    <script src="~/Content/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/table-managed.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            QuickSidebar.init(); // init quick sidebar
+            TableManaged.init();
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

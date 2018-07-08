@@ -1,0 +1,75 @@
+﻿@model CompanyManager.Models.BrandProduct
+@{
+    ViewBag.Title = "Thêm vật tư";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+<link href="~/Content/select2/sl.css" rel="stylesheet" />
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>Hãng
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductID, "Vật tư", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" name="ProductID" id="slcList1"></select>
+                        @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+        $(document).ready(function () {
+            //The url we will send our get request to
+            var valueUrl = '@Url.Action("GetProducts", "Brands")';
+
+            $('#slcList1').select2(
+            {
+                placeholder: 'Nhập tên vật tư',
+
+                //Does the user have to enter any data before sending the ajax request
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    //How long the user has to pause their typing before sending the next request
+                    delay: 150,
+                    //The url of the json service
+                    url: '@Url.Action("GetProducts", "Brands")',
+                    dataType: 'json',
+                    async: true,
+                    //Our search term and what page we are on
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.ProductID, text: obj.ProductName };
+                            })
+                        };
+                    }
+                }
+            });
+
+        });
+
+</script>
